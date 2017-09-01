@@ -57,7 +57,7 @@ RUN apt update && \
 #
 EXPOSE 8888 6006
 
-COPY run_jupyter.sh
+COPY run_jupyter.sh /
 
 WORKDIR "/notebooks"
 CMD ["/run_jupyter.sh", "--allow-root"]
