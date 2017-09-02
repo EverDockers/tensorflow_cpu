@@ -45,7 +45,7 @@ RUN apt update && \
     # Juypter notebook extensions
     # <https://github.com/ipython-contrib/jupyter_contrib_nbextensions>
     #
-    pip3 -no-cache-dir install jupyter_contrib_nbextensions \
+    pip3 --no-cache-dir install jupyter_contrib_nbextensions \
     #
     # Prerequisites of the extension Code Prettifier
     yapf && \
