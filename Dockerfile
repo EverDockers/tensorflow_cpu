@@ -34,6 +34,7 @@ RUN apt update && \
     # Jupyter Notebook
     #
     pip3 --no-cache-dir install jupyter && \
+    #
     # Allow access from outside the container, and skip trying to open a browser.
     # NOTE: disable authentication token for convenience. DON'T DO THIS ON A PUBLIC SERVER.
     mkdir /root/.jupyter && \
@@ -41,6 +42,17 @@ RUN apt update && \
          "\nc.NotebookApp.open_browser = False" \
          "\nc.NotebookApp.token = ''" \
          > /root/.jupyter/jupyter_notebook_config.py && \
+    # Juypter notebook extensions
+    # <https://github.com/ipython-contrib/jupyter_contrib_nbextensions>
+    #
+    pip3 -no-cache-dir install jupyter_contrib_nbextensions \
+    #
+    # Prerequisites of the extension Code Prettifier
+    yapf && \
+    # install javascript and css files
+    jupyter contrib nbextension install --user && \
+    # enable code prettifier
+    jupyter nbextension enable code_prettify/code_prettify && \
     #
     # Tensorflow 1.0.1 - CPU
     #
