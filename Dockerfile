@@ -2,7 +2,7 @@
 FROM ubuntu:16.04
 MAINTAINER Baker Wang <baikangwang@hotmail.com>
 
-#usage: docker run -it -v notebooks:/notebooks -p 8888:8888 -p 6006:6006 kevin8093/test_tf 
+#usage: docker run -it -v notebooks:/notebooks -p 8888:8888 -p 6006:6006 baikangwang/tensorflow_cpu
 
 # Supress warnings about missing front-end. As recommended at:
 # http://stackoverflow.com/questions/22466255/is-it-possibe-to-answer-dialog-questions-when-installing-under-docker
