@@ -54,7 +54,7 @@ RUN apt update && \
     # enable code prettifier
     jupyter nbextension enable code_prettify/code_prettify && \
     #
-    # Tensorflow 1.0.1 - CPU
+    # Tensorflow 1.3.0 - CPU
     #
     pip3 install --no-cache-dir --upgrade tensorflow && \
     #
@@ -62,6 +62,7 @@ RUN apt update && \
     #
     apt clean && \
     apt autoremove && \
+    rm -rf /var/lib/apt/lists/* && \
     mkdir /notebooks
 #
 # Jupyter Notebook : 8888
