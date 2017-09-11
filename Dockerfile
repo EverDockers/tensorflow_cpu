@@ -2,7 +2,7 @@
 FROM ubuntu:16.04
 MAINTAINER Baker Wang <baikangwang@hotmail.com>
 
-#usage: docker run -it -v notebooks:/notebooks -p 8888:8888 -p 6006:6006 kevin8093/test_tf 
+#usage: docker run -it -v notebooks:/notebooks -p 6006:6006 baikangwang/tensorflow_cpu:tfonly
 
 # Supress warnings about missing front-end. As recommended at:
 # http://stackoverflow.com/questions/22466255/is-it-possibe-to-answer-dialog-questions-when-installing-under-docker
@@ -11,11 +11,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt update && \
     apt install -y --no-install-recommends apt-utils \
     # Developer Essentials
-    git curl vim unzip openssh-client wget \
-    # Build tools
-    build-essential cmake \
-    # OpenBLAS
-    libopenblas-dev \
+    git curl vim unzip wget \
     #
     # Python 3.5
     #
@@ -25,34 +21,6 @@ RUN apt update && \
     pip3 install --no-cache-dir --upgrade pip setuptools && \
     echo "alias python='python3'" >> /root/.bash_aliases && \
     echo "alias pip='pip3'" >> /root/.bash_aliases && \
-    # Pillow and it's dependencies
-    apt install -y --no-install-recommends libjpeg-dev zlib1g-dev && \
-    pip3 --no-cache-dir install Pillow && \
-    # Common libraries
-    pip3 --no-cache-dir install numpy scipy sklearn scikit-image pandas matplotlib && \
-    #
-    # Jupyter Notebook
-    #
-    pip3 --no-cache-dir install jupyter && \
-    #
-    # Allow access from outside the container, and skip trying to open a browser.
-    # NOTE: disable authentication token for convenience. DON'T DO THIS ON A PUBLIC SERVER.
-    mkdir /root/.jupyter && \
-    echo "c.NotebookApp.ip = '*'" \
-         "\nc.NotebookApp.open_browser = False" \
-         "\nc.NotebookApp.token = ''" \
-         > /root/.jupyter/jupyter_notebook_config.py && \
-    # Juypter notebook extensions
-    # <https://github.com/ipython-contrib/jupyter_contrib_nbextensions>
-    #
-    pip3 --no-cache-dir install jupyter_contrib_nbextensions \
-    #
-    # Prerequisites of the extension Code Prettifier
-    yapf && \
-    # install javascript and css files
-    jupyter contrib nbextension install --user && \
-    # enable code prettifier
-    jupyter nbextension enable code_prettify/code_prettify && \
     #
     # Tensorflow 1.3.0 - CPU
     #
@@ -65,12 +33,9 @@ RUN apt update && \
     rm -rf /var/lib/apt/lists/* && \
     mkdir /notebooks
 #
-# Jupyter Notebook : 8888
 # Tensorboard : 6006
 #
-EXPOSE 8888 6006
-
-COPY run_jupyter.sh /
+EXPOSE 6006
 
 WORKDIR "/notebooks"
-CMD ["/run_jupyter.sh", "--allow-root"]
+CMD ["/bin/bash"]
