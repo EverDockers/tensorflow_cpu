@@ -1,7 +1,7 @@
-FROM baikangwang/tensorflow_gpu:tfonly
+FROM baikangwang/tensorflow_cpu:tfonly_py2
 MAINTAINER Baker Wang <baikangwang@hotmail.com>
 
-#usage: docker run -it -v projects:/projects -p 8888:8888 -p 6006:6006 baikangwang/tensorflow_cpu:jupyter
+#usage: docker run -it -v projects:/projects -p 8888:8888 -p 6006:6006 baikangwang/tensorflow_cpu:jupyter_py2
 
 RUN apt update && \
     # Build tools
@@ -20,11 +20,11 @@ RUN apt update && \
 #
 # Jupyter Notebook
 #
-RUN pip3 --no-cache-dir install Pillow \
+RUN pip --no-cache-dir install Pillow \
     # Common libraries
     numpy scipy sklearn scikit-image pandas matplotlib && \
 
-    pip3 --no-cache-dir install jupyter && \
+    pip --no-cache-dir install jupyter && \
     #
     # Allow access from outside the container, and skip trying to open a browser.
     # NOTE: disable authentication token for convenience. DON'T DO THIS ON A PUBLIC SERVER.
@@ -36,7 +36,7 @@ RUN pip3 --no-cache-dir install Pillow \
     # Juypter notebook extensions
     # <https://github.com/ipython-contrib/jupyter_contrib_nbextensions>
     #
-    pip3 --no-cache-dir install jupyter_contrib_nbextensions \
+    pip --no-cache-dir install jupyter_contrib_nbextensions \
     #
     # Prerequisites of the extension Code Prettifier
     yapf && \
