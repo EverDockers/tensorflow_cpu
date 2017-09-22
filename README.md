@@ -1,7 +1,11 @@
 # Tensorflow (cpu)
 
 * repository
-    * [`baikangwang/tensorflow_cpu`](https://hub.docker.com/r/baikangwang/tensorflow_cpu/)
+    * [`baikangwang/tensorflow_cpu`](https://hub.docker.com/r/baikangwang/tensorflow_cpu/)  
+      ![Docker Automated buil](https://img.shields.io/docker/automated/baikangwang/tensorflow_cpu.svg)
+      ![Docker Stars](https://img.shields.io/docker/stars/baikangwang/tensorflow_cpu.svg)
+      ![Docker Pulls](https://img.shields.io/docker/pulls/baikangwang/tensorflow_cpu.svg)
+      ![Docker Build Statu](https://img.shields.io/docker/build/baikangwang/tensorflow_cpu.svg)
 * tags
     * [`tfonly`,`latest`](#tfonly-latest)
     * [`tfonly_py2`](#tfonly_py2)
