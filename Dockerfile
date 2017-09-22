@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 MAINTAINER Baker Wang <baikangwang@hotmail.com>
 
-#usage: docker run -it -v projects:/projects -p 6006:6006 baikangwang/tensorflow_cpu:tfonly
+#usage: docker run -it -v projects:/projects -p 6006:6006 baikangwang/tensorflow_cpu:tfonly2
 
 RUN apt update && \
     apt install -y --no-install-recommends apt-utils \
@@ -14,13 +14,11 @@ RUN apt update && \
     apt autoremove && \
     rm -rf /var/lib/apt/lists/*
 #
-# Python 3.5
+# Python 2.7
 #
 RUN apt update && \
-    apt install -y --no-install-recommends python3.5 python3.5-dev python3-pip && \
-    pip3 install --no-cache-dir --upgrade pip setuptools && \
-    echo "alias python='python3'" >> /root/.bash_aliases && \
-    echo "alias pip='pip3'" >> /root/.bash_aliases && \
+    apt install -y --no-install-recommends python2.7 python-dev python-pip && \
+    pip install --no-cache-dir --upgrade pip setuptools && \
     #
     # Cleanup
     #
@@ -32,7 +30,7 @@ RUN apt update && \
 # Tensorflow 1.3.0 - GPU
 #
 #
-RUN pip3 install --no-cache-dir --upgrade tensorflow-gpu
+RUN pip install --no-cache-dir --upgrade tensorflow-gpu
 
 #
 # Specify working folder
