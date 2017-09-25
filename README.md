@@ -9,7 +9,7 @@
 * tags
     * [`tfonly`,`latest`](#tfonly-latest)
     * [`tfonly_py2`](#tfonly_py2)
-    * [`jupyter`](#jupyter)
+    * [`jupyter`,`jupyter_py3`](#jupyter-jupyter_py3)
     * [`jupyter_py2`](#jupyter_py2)
 
 ## `tfonly`, `latest`
@@ -62,7 +62,7 @@ docker run -it --name <container name> -v <local working dir>:/projects -p <host
 * tensorflow: 1.3.0
 * python: 2.7
 
-## `jupyter`
+## `jupyter`,`jupyter_py3`
 
 ### Description
 
