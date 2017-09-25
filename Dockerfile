@@ -27,10 +27,10 @@ RUN apt update && \
     rm -rf /var/lib/apt/lists/*
 
 #
-# Tensorflow 1.3.0 - GPU
+# Tensorflow 1.3.0 - CPU
 #
 #
-RUN pip install --no-cache-dir --upgrade tensorflow-gpu
+RUN pip install --no-cache-dir --upgrade tensorflow
 
 #
 # Specify working folder
