@@ -1,5 +1,5 @@
 FROM baikangwang/tensorflow_cpu:jupyter
-LABEL Author = "Baker Wang <baikangwang@hotmail.com>" 
+MAINTAINER Baker Wang <baikangwang@hotmail.com>
 
 #usage: docker run -it -v projects:/projects -p 8888:8888 -p 6006:6006 -p 5000:5000 baikangwang/tensorflow_cpu:emnist
 
