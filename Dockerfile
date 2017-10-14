@@ -3,14 +3,29 @@ MAINTAINER Baker Wang <baikangwang@hotmail.com>
 
 #usage: docker run -it -v projects:/projects -p 6006:6006 baikangwang/tensorflow_cpu:tfonly
 
+#
 # Set the locale
+#
 # https://stackoverflow.com/questions/28405902/how-to-set-the-locale-inside-a-docker-container
+RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y locales && \
+    #
+    # Cleanup
+    #
+    apt clean && \
+    apt autoremove && \
+    rm -rf /var/lib/apt/lists/*
+
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
-    locale-gen
+    dpkg-reconfigure --frontend=noninteractive locales && \
+    update-locale LANG=en_US.UTF-8
+
 ENV LANG en_US.UTF-8  
 ENV LANGUAGE en_US:en  
 ENV LC_ALL en_US.UTF-8
 
+#
+# initial
+#
 RUN apt update && \
     apt install -y --no-install-recommends apt-utils \
     # Developer Essentials
