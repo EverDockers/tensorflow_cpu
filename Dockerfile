@@ -6,9 +6,7 @@ MAINTAINER Baker Wang <baikangwang@hotmail.com>
 #
 # environment
 #
-RUN pip3 --no-cache-dir install keras h5py flask && \
-
-    pip3 --no-cache-dir install --upgrade scipy
+RUN pip3 --no-cache-dir install keras matplotlib captcha
 
 #
 # server port
